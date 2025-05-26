@@ -1,1 +1,1 @@
-this is a repo where I will upload the exercises for the course about javascript. Each exercise will be stored in a different branch and finally, a new development branch will be created for joining all the resources fo the other branches and will be pulled from main.
+This repository contains my exercises for a JavaScript course. Each exercise is stored in a separate branch. At the end, I’ll create a development branch that combines all resources from the other branches, which will then be merged into main.
