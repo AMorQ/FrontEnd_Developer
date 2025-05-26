@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- Ensures the page scales correctly on mobile -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Title of the webpage -->
+    <title>Practica 1 | My burger site</title>
+    <!-- Link to the external CSS file -->
+    <link rel="stylesheet" href="styles/style.css" />
+    <!-- for the SVG images -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      integrity="sha512-********"
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <!-- Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Droid+Sans&display=swap "
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <!-- HEADER SECTION -->
+    <header class="header">
+      <!-- Logo section -->
+      <div class="logo">
+        <img src="images/Logo.png" alt="Logo" />
+      </div>
+      <!-- Navigation menu -->
+      <nav class="topnav">
+        <ul>
+          <li><a href="#about">HOME</a></li>
+          <li><a href="#menu">MENU</a></li>
+          <li><a href="#services">SERVICES</a></li>
+          <li><a href="#contact">Contact us</a></li>
+        </ul>
+      </nav>
+      <div class="header-icons">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 512 512"
+          style="width: 1.2em; fill: #ffffff"
+        >
+          <path
+            d="M505 442.7L405.3 343c28.3-34.9 45.4-79 
+                45.4-127C450.7 96.5 354.2 0 225.3 0S0 96.5 0 216.3 
+                96.5 432.7 225.3 432.7c48 0 92.1-17.1 127-45.4l99.7 
+                99.7c4.5 4.5 10.6 6.8 16.7 6.8s12.2-2.3 16.7-6.8 
+                c9.1-9.1 9.1-23.8 0-32.9zM225.3 372.7c-85.2 0-156-70.8-156-156 
+                s70.8-156 156-156 156 70.8 156 156-70.8 156-156 156z"
+          />
+        </svg>
+        <!-- <img src="images/magnifying-glass.svg" alt="Search Icon" /> -->
+        <button aria-label="Search"><i class="icon fa-search"></i></button>
+        <span class="icon phone-icon">&#9742;</span>
+        <span class="phone-number">123-456-7890</span>
+      </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+      <div class="hero-text">
+        <!-- Main headline of the page -->
+        <h1>
+          Get Delicious <br />
+          Food <span class="hero-high">Instantly Delivery</span>
+        </h1>
+        <p>
+          Come closer! Here you can find the best burgers in town. We offer a
+          variety of burgers, fries, and drinks to satisfy your cravings. Our
+          burgers are made with the freshest ingredients and cooked to
+          perfection.
+          <br />
+          Whether you're looking for a classic cheeseburger or something more
+          adventurous, we have something for everyone.
+        </p>
+      </div>
+      <div class="hero-image">
+        <!-- better to use a div instead of an image tag directly -->
+        <img
+          src="images/burger.png"
+          alt="Delicious Food"
+          style="float: right; margin: 0 10px; width: 300px"
+        />
+      </div>
+    </section>
+
+    <!-- MAIN CONTENT SECTION -->
+    <main class="content">
+      <section id="about">
+        <div class="stats" style="text-align: center">
+          <div class="stat-item">
+            <!-- insted of imposing the styles in the CSS files, I hard-coded them here in the very beginning-->
+            <!-- remember this could also be done in the head section using a style label -->
+            <div class="stat-number">180K+</div>
+            <div class="stat-label">Website Visitors</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">1200+</div>
+            <div class="stat-label">Daily Orders</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">120+</div>
+            <div class="stat-label">Delivery Staff</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">12+</div>
+            <div class="stat-label">Years of Experience</div>
+          </div>
+        </div>
+        <!-- This is the iframe to embed the Google trend analytics for the search term "pizza" in Spain (Canary Islands) for the last 12 months. -->
+        <!-- TODO: Embed a javascript script for shoing the trend specified in a .csv file downloaded form google trends -->
+
+        <!-- <script type="text/javascript" 
+        src="https://ssl.gstatic.com/trends_nrtr/4031_RC01/embed_loader.js"></script> 
+        <script type="text/javascript"> trends.embed.renderExploreWidget("TIMESERIES", {"comparisonItem":[{"keyword":"pizza","geo":"ES-CN","time":"today 12-m"}],"category":71,"property":""}, {"exploreQuery":"cat=71&geo=ES-CN&q=pizza&hl=es&date=today 12-m","guestPath":"https://trends.google.com:443/trends/embed/"}); 
+        </script> -->
+      </section>
+      <!-- im building a section in case I want to add some real time analytics -->
+
+      <!-- History section -->
+      <div id="our history" class="main-section">
+        <!-- don't use blank spaces, now using it just to know how to deal with them -->
+        <h2>About us</h2>
+        <div class="card section">
+          <div class="container-text">
+            <p>
+              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eaque
+              velit repudiandae voluptatibus culpa alias, reiciendis, nam
+              consequuntur placeat vel ab quod minus dolorum est eveniet natus
+              dicta molestias earum numquam.
+            </p>
+          </div>
+
+          <div class="container-img">
+            <img
+              src="images/pic_sec1.png"
+              alt="Our roots"
+              style="float: right; margin: 0 10px; width: 300px"
+            />
+          </div>
+        </div>
+      </div>
+
+      <!-- Mission section -->
+      <div id="our mission" class="main-section">
+        <!-- the problem with wrapping this only in a section element
+        is that I need its elements to behave differently.
+        The text and the image should be displayed horizontally
+        but inside the text section, the title and the paragraph
+        should be displayed vertically. -->
+        <h2>What is it our mission?</h2>
+        <div class="card section">
+          <div class="container-text">
+            <p>
+              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eaque
+              velit repudiandae voluptatibus culpa alias, reiciendis, nam
+              consequuntur placeat vel ab quod minus dolorum est eveniet natus
+              dicta molestias earum numquam.
+            </p>
+          </div>
+
+          <div class="container-img">
+            <img
+              src="images/pic_sec2.png"
+              alt="Our roots"
+              style="float: left; margin: 0 10px; width: 300px"
+            />
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- FOOTER SECTION -->
+    <footer class="footer">
+      <p>
+        &copy; Copyright
+        <i class="fa-regular fa-copyright" aria-hidden="true"></i>
+        Restaurant.com. All rights reserved
+      </p>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,583 @@
+/* CSS for a simple website layout */
+
+/* TODO: HOMOGENEIZE FONT FAMILIES. search for droid sans (curcy Arial) in google fonts */
+/* how to identify a font? visual inspection: tiene patas en las letras (serifa)?. Con serifa: Times New Roman. Sin serifa: Arial, Roboto, OpenSans. */
+
+
+/* Structure this file:
+- Reset styles
+- Global Variables
+- Layout
+    - Header styles
+    - Body styles
+- Components
+- Utilities */
+
+
+
+/* RESET STYLES */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* GLOBAL VARIABLES */
+
+/* LAYOUT */
+
+    /* HEADER */
+
+.header {
+  background-color: #fac100; /* light background for header */
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #ddd;
+}
+
+/* Logo styles */
+.logo img {
+  height: 50px; /* Set logo height */
+  width: auto;
+}
+
+.header-icons{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #ffffff;
+}
+
+
+/* Style for the icons */
+.header-icons .icon {
+  font-size: 1.2em;
+  cursor: pointer;
+  margin: 1.5em;
+  padding: 1.5;
+
+}
+
+.header-icons .searchBtn {
+  font-size: 1.2em;
+  color: #ffffff !important;
+  /* as the style is inherited from Awesome font, I need to rewrite it  This is not working: emoji rendered using native colors --> lets use an SVG image or Font Awesome */
+  margin: 1.5em;
+  padding: 1.5;
+}
+
+.header-icons .phone-icon,
+.header-icons .phone-number {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.header-icons .phone-number {
+  margin-left: 2px; /* Adjust spacing as needed */
+  font-size: 1em;   /* Adjust size as needed */
+  color: #ffffff;   /* Ensure it matches the icon color */
+}
+
+
+/* Navigation top bar */
+
+.topnav ul {
+  list-style: none;
+  display: flex;
+  gap: 15px; /* Space between navigation items */
+}
+
+
+
+
+.topnav ul li a {
+  text-decoration: none;
+  color: #ffffff;
+  padding: 5px 10px;
+  transition: color 0.3s;
+  font-family: 'Helvetica Neue', 'Arial', sans-serif;
+  /* Verdana, Segoe UI, Calibri, Roboto */
+  font-weight: bold;
+}
+
+/* Hover effect for links */
+.topnav ul li a:hover {
+  color: #000000;
+  text-decoration: underline;
+}
+
+
+    /* BODY STYLES */
+body {
+  font-family: Arial, sans-serif; /* Default font; change as needed */
+  line-height: 1.6;
+  color: #000000;
+  background-color: #ffffff;
+}
+
+#searchContainer {
+  margin-left: 10px;
+}
+
+#searchInput {
+  padding: 5px;
+  font-size: 1em;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+/* removing default stlyes */
+#searchBtn {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+
+    /* HERO SECTION */
+
+.hero {
+  /* background-color: #000000; */
+  /* background: url("../images/background_black.png") no-repeat center center/cover; */
+  background: url("../images/pared_negra.jpg") no-repeat center center/cover;
+  /* No need for z-index here since background-image is behind content */
+  text-align: center;
+  padding: 40px 0px;
+  display: flex; /* this is needed for the image of the burger to remain in the hero section */
+  align-items: center;
+  justify-content: space-between;
+  flex:  1;
+  /* used in the flex items to make them grow and take up all available space withing the flex container */
+  /* Optionally add margin-right to separate from the image */
+  margin-right: 0px;
+}
+
+
+/* .hero::before {
+  content: "";
+  background: url("../images/hero-bg.jpg") no-repeat center center/cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+}  */
+
+.hero-text{
+    position: relative;
+    text-align: left;;
+    width: 50%; /* Adjust width as needed */
+
+}
+
+.hero-text h1 {
+  position: relative;
+  font-size: 1.5em;
+  color: #ffffff;
+  margin-bottom: 10px;
+  font-family: 'Droid Sans', 'Roboto', 'Arial', sans-serif;
+  font-weight: 700; /* Bold */ /* E [100-900] */
+  font-style: italic; /* Italic */
+  z-index: 2;
+  margin-left: 20px;
+}
+
+.hero-high{
+    color: #fac100; /* properties:values */
+    text-align: center;
+    padding: 60px 0px;
+}
+
+.hero-text p {
+  top: 0;             /* adjust vertical position as needed */
+  left: 0;
+  z-index: 1;         /* behind the title */
+  margin: 0;
+  width: 100%;
+  color:#ffffff;
+  /* Optional: adjust opacity or color for a subtle effect */
+  line-height: 1;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 0.5em;
+  opacity: 0.8;
+  font-weight: 10 ; /* Light */
+  margin-left: 20px;
+}
+
+
+.hero-image img {
+  width: 500px;  /* Adjust width as desired */
+  max-width: 100%;
+}
+
+/* MAIN CONTENT */
+
+.content {
+  padding: 40px 20px;
+}
+
+/* .content section {
+  margin-bottom: 40px;
+} */
+
+/* Section headings */
+/* .content section h2 {
+  font-size: 2em;
+  margin-bottom: 10px; */
+/* } */
+
+/* better do it by specific class or ids */
+/* section{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding:20px;
+    margin-bottom: 40px;
+} */
+
+.main-section{
+  padding: 40px 20px;
+  background-color: #f9f9f9; /* Fondo claro para separación visual */
+  margin-bottom: 40px; /* Espacio entre secciones */
+}
+.main-section h2 {
+  font-size: 2em;
+  margin-bottom: 15px;
+  color: #000000; /* Azul oscuro para títulos */
+}
+
+.card.section {
+/*remember if you put a blank space in between the names, it will interpret it as two different classes */
+  display: flex;
+  flex-wrap: wrap; /* Para responsividad */
+  justify-content: space-between;
+  /* flex-direction: row; */
+  align-items: center;
+  gap: 20px; /* Optional spacing */
+  margin: 0 auto;
+  max-width: 1200px; /* Max width for the card section */
+}
+
+.card-text {
+  flex: 1 1 50%;  /*Ocupa el 50% del espacio  */
+  padding-right: 20px;
+}
+
+.card-text p {
+  font-size: 1em;
+  line-height: 1.6;
+  color: #333;
+}
+
+/* Image main-section */
+
+.card-image {
+  flex: 1 1 40%; /* Ocupa el 40% del espacio */
+  display: flex;
+  flex-shrink: 0;
+  justify-content: center; /* Centra la imagen horizontalmente */
+}
+
+.card-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  max-width: 100%; /* Evita que se salga */
+}
+
+
+
+/* Target the card section inside the mission section and reverse the order */
+#our\ mission .card.section {
+  display: flex;
+  flex-direction: row-reverse;  
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+#our\ mission .card.section .card-img {
+  flex: 0 0 300px;
+}
+
+#our\ mission .card.section .card-img img {
+  float: none;
+  width: 100%;
+  height: auto;
+  object-fit: contain; /* keeps the aspect ratio */
+
+} 
+ /* lets try to do it reversing the HTML order (NOT QUITE WORKING) of text image  */
+
+#our\ mission .card-text {
+  float: none;
+  flex: 1;
+  /* Optional: add some padding to separate from the image */
+  padding-right: 20px;
+} 
+
+/* List styling with yellow circular bulletpoints */
+.mission-list {
+  list-style-type: disc;
+  list-style-position: inside;
+  padding-left: 0;
+  color: #fac100; /* yellow color for the bullet (supported in modern browsers) */
+  margin: 10px 0;
+  font-weight: bold;
+}
+
+.mission-list li {
+  margin-bottom: 5px;
+}
+
+/* Button styling with yellow background */
+.history-button {
+  background-color: #fac100;
+  border: none;
+  padding: 10px 20px;
+  color: #ffffff;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 20px;
+  border-radius: 4px;
+  /* Optional: add a hover effect */
+  transition: background-color 0.3s;
+}
+
+.history-button:hover {
+  background-color: #e0a800;
+}
+
+#contact-section {
+  background-color: #ffffff; /* Light background for contact section */
+}
+
+#contact-section .contact-card {
+  background-color: #ffffff; /* Light background for contact section */
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+  padding: 20px;
+  margin-top: 40px;
+}
+
+#contact-section .contact-img {
+  flex: 0 0 300px;
+}
+
+#contact-section .contact-img img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  /* box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); */
+}
+
+#contact-section .contact-form {
+  flex: 1;
+}
+
+#contact-section .contact-form form {
+  display: flex;
+  flex-direction: column;
+}
+
+#contact-section .contact-form label {
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+#contact-section .contact-form input,
+#contact-section .contact-form textarea {
+  padding: 8px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+#contact-section .submit-button {
+  background-color: #fac100;
+  border: none;
+  padding: 10px 20px;
+  color: #ffffff;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 4px;
+  margin-top: 20px;
+  transition: background-color 0.3s;
+}
+
+#contact-section .submit-button:hover {
+  background-color: #e0a800;
+}
+
+#subscribe-section {
+  background-color: #e0e0e0; /* Grey background */
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.subscribe-container {
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+#subscribe-section h2 {
+  color: #333;
+  font-size: 2em;
+  margin-bottom: 10px;
+}
+
+#subscribe-section p {
+  color: #666;
+  margin-bottom: 20px;
+}
+
+#subscribe-section form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+#subscribe-section input[type="email"] {
+  padding: 10px;
+  font-size: 1em;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  flex: 1;
+  min-width: 250px;
+}
+
+#subscribe-section button {
+  background-color: #fac100;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+#subscribe-section button:hover {
+  background-color: #e0a800;
+}
+
+.stats {
+  display: flex;
+  justify-content: center; /* space-around; this would place it to the left */
+  align-items: center;
+  padding: 40px 20%;
+  background-color: #ffffff;
+  gap: 20px;
+}
+
+.stat-item {
+  text-align: center;
+  padding: 20px;
+}
+
+.stat-number {
+  font-size: 32px;
+  font-weight: bold;
+  color: #000000; /* Azul oscuro para resaltar los números */
+  font-family: 'Arial Black', 'Helvetica Bold';
+}
+
+.stat-label {
+  font-size: 16px;
+  color: #000000;
+  margin-top: 5px;
+  font-family: 'Arial', 'helvetica';
+}
+#footer-links.black-section {
+  background-color: #000000; /* Black background */
+  border-bottom: 1px solid #ffffff; /* White bottom border */
+  padding: 40px 20px;
+  color: #ffffff;
+  font-family: 'Helvetica Neue', 'Arial', sans-serif;
+}
+
+#footer-links .footer-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+#footer-links .footer-text {
+  flex: 1 1 40%;
+  margin-right: 20px;
+}
+
+#footer-links .footer-columns {
+  flex: 1 1 55%;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+#footer-links .footer-column ul {
+  list-style: none;
+  padding: 0;
+}
+
+#footer-links .footer-column ul li {
+  margin-bottom: 10px;
+}
+
+#footer-links .footer-column ul li a {
+  text-decoration: none;
+  color: #ffffff;
+  transition: color 0.3s;
+}
+
+#footer-links .footer-column ul li a:hover {
+  color: #fac100;
+}
+
+/* FOOTER STYLES */
+
+ .footer {
+  background-color: #000000;
+  text-align: center;
+  padding: 15px;
+  border-top: 1px solid #ddd;
+  font-size: 0.9em;
+  color: #ffffff;
+}
+
+
+@media (max-width: 768px) {
+  .stats-section {
+    flex-direction: column;
+    padding: 20px;
+  }
+
+  .stat-item {
+    margin-bottom: 30px;
+  }
+}
+
+@media (max-width: 768px) {
+  .card-section {
+    flex-direction: column;
+  }
+}
+
+/* En lugar de solo max-width: 768px, usa estas breakpoints */
+@media (max-width: 480px) { /* Móviles */ }
+@media (min-width: 481px) and (max-width: 768px) { /* Tablets */ }
+@media (min-width: 769px) { /* Escritorio */ }
+
+
+
+
