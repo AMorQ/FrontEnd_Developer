@@ -2,34 +2,39 @@
 /* Let's first start with the mobile design and then expand it to larger screens.  */
 /* THIS IS A GOOD PRACTICE */
 
+/* Genral styles(mobile first) */
+
 body{
     font-family: Serif-Inst; /* Set a base font family */
     color:black; /* Use a CSS variable for text color */
     background-color: var(--bg); /* Use a CSS variable for background color */
+    min-width: 300px; /* NOT WORKING! i WANT TO PREVENT THE USER TO GO TO A VERY BIG/SMALL WIDTH */
 
 }
 
 h1 {
-    font-size: 14px; /* Base font size for mobile. BETTER DO IT RELATIVE!! */
-    margin-bottom: 0.15rem; /* Space below the heading */
+    font-size: 2rem; /* Base font size for mobile. BETTER DO IT RELATIVE!! */
+    margin-bottom: 0.75rem; /* Space below the heading */
     line-height: 20px; /* Line height for better readability */
-    letter-spacing: -0.7px;
+    letter-spacing: -0.05rem;
     text-align: center; /* Center align the text */
 }
 
 h2{
     font-family: sans-serif; /* Set a specific font family for h2 */
     color: var(--text); /* Use a CSS variable for text color */
-    font-size: 2.1px; /* Font size for h2 */
+    font-size: 0.7rem; /* Font size for h2 */
     margin-bottom: 0.3rem; /* Space below the heading */
-    letter-spacing: 0.25px;
+    letter-spacing: 0.025rem;
     font-weight: 600; /* Semi-bold font weight */
     text-align: center; /* Center align the text */
 }
+
 p{
     color:black;
-    font-size: 3.5px;;
+    font-size: 1rem;
 }
+
 .wrapper {
     display: flex;             /* Enable flexbox */
     flex-direction: column;      /* Arrange items in a row */
@@ -41,7 +46,7 @@ p{
     display: flex;
     justify-content: center;
     flex-direction: column;
-    padding: 20px; 
+    padding: 2rem; 
     margin-left: 7%;
     margin-right: 7%;
     box-sizing: border-box; /* Ensures padding is included in width */
@@ -49,15 +54,14 @@ p{
 }
 .description{
     font-family: sans-serif;
-    font-size: 3px;;
-    margin-bottom: 5px; /* Space below the description */;
+    font-size: 0.75rem;
+    margin-bottom: 0.5rem; /* Space below the description */;
     width: 100%;
-    margin-left: 25%;
-    margin-right: 25%;
+    margin-left: 85%;
+    margin-right: 85%;
     text-align: center;
     line-height: 120%;
     box-sizing: border-box; /* Ensures padding is included in width */
-    width: 100%;
 }
 
 .gallery{   
@@ -86,7 +90,7 @@ p{
 
 .button {
     font-family: Serif-Inst; /* Set a specific font family for buttons */
-    font-size: 2px; /* Font size for buttons */
+    font-size: 0.5rem; /* Font size for buttons */
     display: inline-block; /* Make it behave like a block-level element but stay in line */
     padding: 5px 10px;      /* Add some padding for better appearance */
     background-color: var(--bg);; /* Set a background color */
@@ -114,21 +118,20 @@ p{
 
 
 /* --- Media Queries for Responsiveness --- */
+/* Remember the mobile display is set to default, this is a min-width of 320px
 
 /* e.g. content-grid stacks items vertically on small screens, and switches to rows on larger screens.  */
 
 
-/* Tablet Styles (e.g., screens wider than 600px) */
+
+/* Tablet/Mobile (e.g., screens wider than 600px) */
 @media (min-width: 600px) {
-    .container {
-        width: 85%;
-    }
 
-    header nav {
-        text-align: center; /* Or adjust as needed */
-    }
 
-    .content-grid {
+    .button{
+        font-size: 1.5rem;
+    }
+    .wrapper {
         flex-direction: row; /* Tablet: Cards side-by-side */
         flex-wrap: wrap; /* Allow wrapping if more cards */
     }
@@ -140,23 +143,49 @@ p{
 
 /* Desktop Styles (e.g., screens wider than 900px) */
 @media (min-width: 900px) {
-    .container {
-        width: 80%;
-        max-width: 1200px; /* Optional: Set a max width */
+
+    body{
+        max-width:1400px;
+        overflow-x:hidden;
     }
 
-    header {
+    h1{
+        font-size: 3rem; /* Increase font size for larger screens */
+        margin-bottom: 1rem; /* Increase space below the heading */
+    }
+    .hero p{
+        font-size: 0.9rem; /* Increase font size for larger screens */
+    }
+
+    .gallery {
         display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 1rem 2rem; /* Adjust padding for desktop */
+        flex-direction: row;
+        align-items: stretch; /* Stretch items to fill height */
+        height: 100%;
+        justify-content: center; /* Center align items */
+        /* margin:0% if I try to remove the margin, the content is going to the left*/
+        width: 86%;
+        box-sizing: border-box; /* Ensures padding is included in width */
+        margin: 0 auto;
     }
 
-    header h1 {
-        margin-bottom: 0;
+    .small-images {
+        display: flex;
+        flex-direction: column; /* Stack small images vertically */
+        height: 100%; /* Make small-images take up full height */
+        margin-left: 0; /* Remove unnecessary margins */
+        margin-right: 0; /* Remove unnecessary margins */
+        width: 30%;
     }
 
-    .card {
-        flex-basis: calc(33.333% - 0.67rem); /* Three cards per row */
+    .small-image {
+        width: 100%; /* Make small images take up full width */
+        height: auto; /* Maintain aspect ratio */
+        object-fit: contain; 
     }
+    .big-image{
+        width: 70% /* takes the 70% of available width in its parent container, which is gallery */
+    }
+    
+    
 }

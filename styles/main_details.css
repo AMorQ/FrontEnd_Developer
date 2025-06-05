@@ -104,43 +104,18 @@ h1 {
 
 /* Tablet Styles (e.g., screens wider than 600px) */
 @media (min-width: 600px) {
-    .container {
-        width: 85%;
-    }
 
-    header nav {
-        text-align: center; /* Or adjust as needed */
-    }
-
-    .content-grid {
-        flex-direction: row; /* Tablet: Cards side-by-side */
-        flex-wrap: wrap; /* Allow wrapping if more cards */
-    }
-
-    .card {
-        flex-basis: calc(50% - 0.5rem); /* Two cards per row, considering gap */
+    h1{
+        font-size:2rem;
+        margin-bottom: 1rem;
     }
 }
 
 /* Desktop Styles (e.g., screens wider than 900px) */
 @media (min-width: 900px) {
-    .container {
-        width: 80%;
-        max-width: 1200px; /* Optional: Set a max width */
+    h1{
+        font-size:2rem;
+        margin-bottom: 1rem
     }
 
-    header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 1rem 2rem; /* Adjust padding for desktop */
-    }
-
-    header h1 {
-        margin-bottom: 0;
-    }
-
-    .card {
-        flex-basis: calc(33.333% - 0.67rem); /* Three cards per row */
-    }
 }
