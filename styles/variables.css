@@ -1,0 +1,20 @@
+/* global variables */
+
+:root {
+  --primary-color: #EBD96B;
+  --secondary-color: #F4F6F5;
+  --secondary-black: #585050;
+  --secondary-white: #fff;
+  --text: #a39595;
+  --grey-text: #f0f0f0;
+  --extra: #c2c8da;
+  --box-size: 100px;
+  --bg: #bfbfbf;
+  --bg-hero: #F4F6F5;
+  
+}
+
+.dark-mode {
+  --bg: #111;
+  --text: #e01c1ce0;
+}

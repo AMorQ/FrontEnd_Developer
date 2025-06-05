@@ -1,0 +1,162 @@
+/* we want a responsive design that looks good on all devices.  */
+/* Let's first start with the mobile design and then expand it to larger screens.  */
+/* THIS IS A GOOD PRACTICE */
+
+body{
+    font-family: Serif-Inst; /* Set a base font family */
+    color:black; /* Use a CSS variable for text color */
+    background-color: var(--bg); /* Use a CSS variable for background color */
+
+}
+
+h1 {
+    font-size: 14px; /* Base font size for mobile. BETTER DO IT RELATIVE!! */
+    margin-bottom: 0.15rem; /* Space below the heading */
+    line-height: 20px; /* Line height for better readability */
+    letter-spacing: -0.7px;
+    text-align: center; /* Center align the text */
+}
+
+h2{
+    font-family: sans-serif; /* Set a specific font family for h2 */
+    color: var(--text); /* Use a CSS variable for text color */
+    font-size: 2.1px; /* Font size for h2 */
+    margin-bottom: 0.3rem; /* Space below the heading */
+    letter-spacing: 0.25px;
+    font-weight: 600; /* Semi-bold font weight */
+    text-align: center; /* Center align the text */
+}
+p{
+    color:black;
+    font-size: 3.5px;;
+}
+.wrapper {
+    display: flex;             /* Enable flexbox */
+    flex-direction: column;      /* Arrange items in a row */
+    min-height: 100vh;         /* Ensure it takes at least the full viewport height */
+}
+
+.hero{
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding: 20px; 
+    margin-left: 7%;
+    margin-right: 7%;
+    box-sizing: border-box; /* Ensures padding is included in width */
+    background-color: whitesmoke;
+}
+.description{
+    font-family: sans-serif;
+    font-size: 3px;;
+    margin-bottom: 5px; /* Space below the description */;
+    width: 100%;
+    margin-left: 25%;
+    margin-right: 25%;
+    text-align: center;
+    line-height: 120%;
+    box-sizing: border-box; /* Ensures padding is included in width */
+    width: 100%;
+}
+
+.gallery{   
+    display: flex;
+    flex-direction: column; /* Stack items vertically on mobile */
+    align-items: center; /* Center align items */
+    margin-left: 7%;
+    margin-right: 7%;
+}
+
+.small-images{
+    display: flex;
+    flex-direction: row; /* Arrange images in a row */
+    justify-content: center; /* Center align items */
+    margin-left: 7%;
+    margin-right: 7%;
+}
+
+.small-image{
+    width: 58.1%; /* Set a fixed width for small images */
+    height: auto; /* Set a fixed height for small images */
+    cursor: pointer; /* Change cursor to pointer on hover */
+    transition: transform 0.3s ease; /* Smooth transition for hover effect */
+}
+
+
+.button {
+    font-family: Serif-Inst; /* Set a specific font family for buttons */
+    font-size: 2px; /* Font size for buttons */
+    display: inline-block; /* Make it behave like a block-level element but stay in line */
+    padding: 5px 10px;      /* Add some padding for better appearance */
+    background-color: var(--bg);; /* Set a background color */
+    color: white;             /* Set the text color */
+    text-decoration: none;    /* Remove the default underline */
+    border: none;
+    border-radius: 2px;       /* Add some rounded corners */
+    cursor: pointer;           /* Change the cursor to a pointer on hover */
+    margin-left: 7%;
+    margin-right: 7%;
+}
+
+.button:hover {
+    background-color: #dabfbf; /* Darken the background color on hover */
+}
+
+.enlarged-image {
+  width: auto; /* Set your desired width */
+  height: auto;   /* Keeps the aspect ratio. Remove if you want to set a specific height. */
+  /* Or you can use percentages for responsive sizing: */
+  /* width: 80%; */
+  /* max-width: 600px; */ /* Optional: to prevent it from becoming too large */
+}
+
+
+
+/* --- Media Queries for Responsiveness --- */
+
+/* e.g. content-grid stacks items vertically on small screens, and switches to rows on larger screens.  */
+
+
+/* Tablet Styles (e.g., screens wider than 600px) */
+@media (min-width: 600px) {
+    .container {
+        width: 85%;
+    }
+
+    header nav {
+        text-align: center; /* Or adjust as needed */
+    }
+
+    .content-grid {
+        flex-direction: row; /* Tablet: Cards side-by-side */
+        flex-wrap: wrap; /* Allow wrapping if more cards */
+    }
+
+    .card {
+        flex-basis: calc(50% - 0.5rem); /* Two cards per row, considering gap */
+    }
+}
+
+/* Desktop Styles (e.g., screens wider than 900px) */
+@media (min-width: 900px) {
+    .container {
+        width: 80%;
+        max-width: 1200px; /* Optional: Set a max width */
+    }
+
+    header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 2rem; /* Adjust padding for desktop */
+    }
+
+    header h1 {
+        margin-bottom: 0;
+    }
+
+    .card {
+        flex-basis: calc(33.333% - 0.67rem); /* Three cards per row */
+    }
+}

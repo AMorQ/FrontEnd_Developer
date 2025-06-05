@@ -1,0 +1,146 @@
+/* we want a responsive design that looks good on all devices.  */
+/* Let's first start with the mobile design and then expand it to larger screens.  */
+/* THIS IS A GOOD PRACTICE */
+
+body{
+    font-family: Serif-Inst; /* Set a base font family */
+    color: #384454; /* Use a CSS variable for text color */
+    background-color: var(--bg); /* Use a CSS variable for background color */
+
+}
+
+h1 {
+    font-size: 20px; /* Base font size for mobile. BETTER DO IT RELATIVE!! */
+    margin-bottom: 0.15rem; /* Space below the heading */
+    line-height: 20px; /* Line height for better readability */
+    letter-spacing: -0.7px;
+    text-align: center; /* Center align the text */
+}
+
+
+.gallery{   
+    display: flex;
+    flex-direction: row; 
+    flex-wrap:wrap; /* Allow wrapping of images */
+    align-items: center; 
+    background-color: #384454;
+    width: 100%;
+    margin-right: 0! important;
+    padding-right: 0! important;
+    justify-content:center
+} 
+
+ .images{
+    display: flex;
+    flex-direction: row; 
+    justify-content: center; 
+}
+
+/* .image{
+    width: 58.1%; 
+    height: auto; 
+    cursor: pointer; 
+    transition: transform 0.3s ease; 
+}  */
+
+
+.wrapper {
+    display: flex;
+    flex-direction: column; /* Stack items vertically */
+    align-items: center;    /* Center items horizontally */
+    /* Other styles for .wrapper */
+    background-color: #384454;
+}
+
+/* If you want to center the button only */
+.wrapper > .button {
+    margin-top: 45px;
+    color: whitesmoke;
+    border: whitesmoke 0.5px solid; /* White border */
+    width: 100%;
+    text-align: center; /* Center text inside the button */
+    padding: 10px;
+    
+}
+
+/* .button:hover {
+
+}  */
+ .image-container{
+    display:flex; 
+    flex-direction: column;
+ }
+.description, .price{
+    color:white;
+}
+.text-container{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between; /* Space between description and price */
+    padding:15px;
+}
+/* .description{
+    text-align: left; 
+}
+.price{
+    text-align: right;
+} */
+
+
+.enlarged-image {
+  width: auto; /* Set your desired width */
+  height: auto;   /* Keeps the aspect ratio. Remove if you want to set a specific height. */
+  /* Or you can use percentages for responsive sizing: */
+  /* width: 80%; */
+  /* max-width: 600px; */ /* Optional: to prevent it from becoming too large */
+}
+
+
+
+/* --- Media Queries for Responsiveness --- */
+
+/* e.g. content-grid stacks items vertically on small screens, and switches to rows on larger screens.  */
+
+
+/* Tablet Styles (e.g., screens wider than 600px) */
+@media (min-width: 600px) {
+    .container {
+        width: 85%;
+    }
+
+    header nav {
+        text-align: center; /* Or adjust as needed */
+    }
+
+    .content-grid {
+        flex-direction: row; /* Tablet: Cards side-by-side */
+        flex-wrap: wrap; /* Allow wrapping if more cards */
+    }
+
+    .card {
+        flex-basis: calc(50% - 0.5rem); /* Two cards per row, considering gap */
+    }
+}
+
+/* Desktop Styles (e.g., screens wider than 900px) */
+@media (min-width: 900px) {
+    .container {
+        width: 80%;
+        max-width: 1200px; /* Optional: Set a max width */
+    }
+
+    header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 2rem; /* Adjust padding for desktop */
+    }
+
+    header h1 {
+        margin-bottom: 0;
+    }
+
+    .card {
+        flex-basis: calc(33.333% - 0.67rem); /* Three cards per row */
+    }
+}

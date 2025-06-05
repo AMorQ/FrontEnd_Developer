@@ -1,0 +1,20 @@
+/* better to do it without downloading! each time the webpage is accessed */
+
+@font-face {/* declare a custom font for the webpage */
+  font-family: "Serif-Inst";
+  src: url(../fonts/InstrumentSerif-Regular.ttf) format("truetype");
+}
+
+@font-face {
+  font-family: "Serif-Inst-Italic";
+  src: url(../fonts/InstrumentSerif-Italic.ttf) format("ttf");
+}
+
+
+
+/* @font-face {
+  font-family: "Roboto"; 
+  src: url(../fonts/Roboto-Italic.ttf) format("truetype");
+  font-weight: normal; 
+  font-style: italic;
+} */
