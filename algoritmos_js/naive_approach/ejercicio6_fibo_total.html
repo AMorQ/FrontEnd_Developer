@@ -1,0 +1,52 @@
+<!-- 6 - Crear un programa que calcule el número Fibonacci en la posición (n).  -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ejercicio 6 - Fibonacci</title>
+</head>
+<body>
+  <h1>Cuál es el número Fibonacci en la posición (n)?</h1>
+
+  <label for="positionInput">Ingrese la posición (n):</label>
+  <input type="text" id="positionInput" onkeydown="handleKeyDown(event)">
+  <button onclick="calculateFibonacci()">Calcular Fibonacci</button>
+  <p id="explanation" style="color: red;">ATENCIÓN! la posición empieza en 0!</p>
+  <p id="result"></p>
+
+  <script>
+    function calculateFibonacci  () {
+    const positionInput = document.getElementById("positionInput");
+    const position = parseInt(positionInput.value);
+    
+    const resultElement = document.getElementById("result");
+
+    if (isNaN(position) || position < 0) {
+        resultElement.textContent = "Por favor, ingrese un número entero no negativo.";
+    } else {
+        let a = 0, b = 1, fib = 0;
+        if (position === 0) {
+            fib = a;
+        } else if (position === 1) {
+            fib = b;
+        } else {
+            for (let i = 2; i <= position; i++) {
+                fib = a + b;
+                a = b;
+                b = fib;
+            }
+        }
+        resultElement.textContent = `El número de Fibonacci en la posición ${position} es ${fib}.`;
+    }
+}
+
+function handleKeyDown(event) {
+    if (event.key === "Enter") {
+        calculateFibonacci();
+    }
+}
+  </script>
+</body>
+</html>

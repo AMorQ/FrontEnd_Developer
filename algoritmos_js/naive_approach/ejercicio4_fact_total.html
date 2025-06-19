@@ -1,0 +1,49 @@
+<!-- Crear un algoritmo que devuelva el factorial de un número. -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Print Factorial</title>
+</head>
+<body>
+  <h1>Print Factorial</h1>
+
+  <label for="numberInput">Ingrese un número:</label>
+  <input type="text" id="numberInput" onkeydown="handleKeyDown(event)">
+  <button onclick="printFactorial()">Calcular Factorial</button>
+
+  <p id="result"></p>
+
+  <script>
+    function printFactorial() {
+
+    // let number = parseInt(prompt("Enter a number to calculate its factorial:"));
+
+    const numberInput = document.getElementById("numberInput");
+    const inputValue = numberInput.value;
+
+    const resultElement = document.getElementById("result");
+
+    if (isNaN(inputValue) || inputValue < 0) {
+        resultElement.textContent = "Por favor, ingrese un número entero no negativo.";
+        // return;
+    } else {
+        const number = parseInt(inputValue)
+        let factorial = 1;
+        for (let i = 1; i <= number; i++) {
+            factorial *= i;
+        }
+
+        resultElement.textContent = `El factorial de ${number} es ${factorial}.`;
+    }
+}
+function handleKeyDown(event) {
+    if (event.key === "Enter") {
+        printFactorial();
+    }
+}
+  </script>
+</body>
+</html>

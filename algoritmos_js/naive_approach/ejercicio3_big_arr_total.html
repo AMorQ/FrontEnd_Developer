@@ -1,0 +1,62 @@
+<!-- 3 - Escribir una función que encuentre el número mayor en un array. -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Find Max in Array</title>
+</head>
+<body>
+  <h1>Find Max in Array</h1>
+
+  <label for="arrayInput">Ingrese un array de números (separados por comas):</label>
+  <input type="text" id="arrayInput" onkeydown="handleKeyDown(event)">
+  <button onclick="findMaxInArray()">¿Cuál es el máximo número del array?</button>
+
+  <p id="result"></p>
+
+  <script>
+    function findMaxInArray() { 
+    const arrayInput = document.getElementById("arrayInput");
+
+    const inputValue = arrayInput.value;
+
+
+    const resultElement = document.getElementById("result");
+
+    // Check if the input is empty
+    if (inputValue === "") {        
+        resultElement.textContent = "El campo no puede estar vacío";
+    } else {
+        // Split the input string into an array of numbers
+        const numArray = inputValue.split(",");
+        const numbersArray = numArray.map(Number)
+        console.log(numbersArray);
+        console.log(numArray);
+
+        // Check if all elements are valid numbers
+        if (numbersArray.some(isNaN)) {
+            resultElement.textContent = "Por favor, ingrese solo números separados por comas.";
+        } else {
+            // Find the maximum number in the array
+            const maxNumber = Math.max(...numbersArray);
+            resultElement.textContent = "El número máximo es: " + maxNumber;
+        }
+    }           
+}
+
+function handleKeyDown(event) {
+    if (event.key === "Enter") {
+        findMaxInArray();
+    }
+}
+  </script>
+</body>
+</html>
+
+<!-- ways of creating an array; 
+let miArray = [1, 2, 3, "hola", true];
+let miArray = new Array(1, 2, 3, "hola", true);
+let miArray = new Array(10); // Crea un array con 10 elementos vacíos
+-->

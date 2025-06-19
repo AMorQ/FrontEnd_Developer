@@ -1,0 +1,46 @@
+<!-- 8 - Crear una función que cuente cuántas veces aparece un carácter en un string.  -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ejercicio 8 - Contar Caracteres</title>
+</head>
+<body>
+  <h1>Contar Caracteres en un String</h1>
+
+<input type="text" id="charInput" placeholder="Ingrese un carácter" onkeydown="handleKeyDown(event)">
+<input type="text" id="stringInput" placeholder="Ingrese un string" onkeydown="handleKeyDown(event)">
+<!-- I will put on key down on both. Then Javascript wont execute if both elements are not inputted by the user -->
+
+<button onclick="countCharacter()">Contar</button>
+
+<p id="result"></p>
+  <script>
+    function  countCharacter() {
+const  charInput = document.getElementById("charInput");
+const  char = charInput.value;
+
+const  stringInput = document.getElementById("stringInput");
+const  string = stringInput.value;
+
+const resultElement = document.getElementById("result");
+
+if (!char || !string) {
+    resultElement.textContent = "Por favor, ingrese un carácter y un string.";
+} else {
+    const count = (string.match(new RegExp(char, "g")) || []).length;
+    // g stand for globalThis, not just the first occurrence
+    resultElement.textContent = `El carácter "${char}" aparece ${count} veces.`;
+}
+}
+
+function handleKeyDown(event) {
+    if (event.key === "Enter") {
+        countCharacter();
+    }
+}
+  </script>
+</body>
+</html>

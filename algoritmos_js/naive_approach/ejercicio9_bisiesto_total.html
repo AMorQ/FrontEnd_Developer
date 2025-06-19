@@ -1,0 +1,40 @@
+<!-- 9 - Escribir un algoritmo que determine si un año es bisiesto.
+  -->
+
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 9 - Año Bisiesto</title>
+  </head>
+  <body>
+    <h1>Determinar si un Año es Bisiesto</h1>
+  <label for="yearInput">Ingrese un año:</label>
+  <input type="text" id="yearInput" onkeydown="handleKeyDown(event)">
+  <button onclick="Bisiesto()">Verificar</button>
+  <p id="result"></p>
+    <script>
+      function Bisiesto () {
+const yearInput = document.getElementById("yearInput");
+const year = yearInput.value;
+const resultElement = document.getElementById("result");
+if (!year) {
+    resultElement.textContent = "Por favor, ingrese un año.";
+} else if (isNaN(year)) {
+    resultElement.textContent = "Por favor, ingrese un número válido.";
+} else if (year % 4 === 0 && (year % 100 !== 0 || year % 400 === 0)) {
+    resultElement.textContent = `${year} es un año bisiesto.`;
+} else {
+    resultElement.textContent = `${year} no es un año bisiesto.`;   
+}
+}
+function handleKeyDown(event) {
+    if (event.key === "Enter") {
+        Bisiesto();
+    }
+}
+    </script>
+  </body>
+  </html>
+ 

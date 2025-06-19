@@ -1,0 +1,69 @@
+<!-- 7 - Ordenar un array de números en orden ascendente (sin usar sort).  -->
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Ejercicio 7 - Ordenar Array</title>
+ </head>
+
+ <body>
+   <h1>Ordenar un array de números</h1>
+
+ <label for="arrayInput">Ingrese un array de números (separados por comas):</label>
+ <input type="text" id="arrayInput" onkeydown="handleKeyDown(event)">
+ <button onclick="sortArray()">Ordenar</button>
+ 
+ <p id="result"></p>
+   <script>
+    function sortArray () {
+
+const arrayInput = document.getElementById("arrayInput");
+const inputValue = arrayInput.value;
+
+const resultElement = document.getElementById("result");
+
+if (!inputValue) {
+    resultElement.textContent = "Por favor, ingrese un array de números.";
+} else {
+    const numArray = inputValue.split(",").map(num => parseFloat(num.trim())).filter(num => !isNaN(num));
+    if (numArray.length === 0) {
+        resultElement.textContent = "Por favor, ingrese un array de números válidos.";
+    } else {
+
+        // Ordenar el array sin usar sort().
+        // Voy comparando elemento a elemento e intercambiando posiciones si el primer elemento es mayor
+        // Por ejemplo, si tengo el array [5, 3, 4, 2], empiezo comparando 5 y 3 e intercambian posiciones
+        // Tengo el array [3, 5, 4, 2]. Sigo comparando 5 y 4 e intercambian posiciones
+        // Tengo el array [3, 4, 5, 2]. Sigo comparando 5 y 2 e intercambian posiciones
+        // Tengo el array [3, 4, 2, 5] y vuelvo al bucle de la i. 
+        // Sigo comparando el 4 y el 2 e intercambian y vuelvo al bucle de la i con [3, 2, 4, 5]. 
+        // Sigo comparando el 3 y el 2 e intercambian y vuelvo al bucle de la i con [2, 3, 4, 5].
+        // Ahora ya no hay más elementos a la izquierda del 2, por lo que el
+        for (let i = 0; i < numArray.length - 1; i++) {
+            // why numArray.length - 1 ? Cause the position in JS starts in 0
+            console.log('i-index = ' + i);
+            for (let j = 0; j < numArray.length - 1 - i; j++) {
+                console.log('j-index = ' + j);
+                if (numArray[j] > numArray[j + 1]) {
+                    // Intercambiar
+                    const temp = numArray[j];
+                    numArray[j] = numArray[j + 1];
+                    numArray[j + 1] = temp;
+                }
+                console.log('Array en este punto: ' + numArray.join(", "));
+            }
+        }
+        resultElement.textContent = `Array ordenado: ${numArray.join(", ")}`;
+    }
+}
+}
+
+function handleKeyDown(event) {
+    if (event.key === "Enter") {
+        sortArray();
+    }
+}
+   </script>
+ </body>
+ </html>

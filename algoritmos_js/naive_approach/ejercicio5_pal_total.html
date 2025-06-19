@@ -1,0 +1,43 @@
+<!-- 5 - Determinar si una palabra es un palíndromo. -->
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Ejercicio 5 - Palíndromo</title>
+ </head>
+ <body>
+   <h1>Es un palíndromo?</h1>
+
+  <label for="wordInput">Ingrese una palabra:</label>
+  <input type="text" id="wordInput" onkeydown="handleKeyDown(event)">
+  <button onclick="isPalindrome()">Verificar Palíndromo</button>
+
+  <p id="result"></p>
+   <script>
+    function isPalindrome() {
+
+    const wordInput = document.getElementById("wordInput");
+    const inputValue = wordInput.value;
+
+    const resultElement = document.getElementById("result");
+
+    if (!inputValue) {
+        resultElement.textContent = "Por favor, ingrese una palabra.";
+    } else {
+        const reversed = inputValue.split("").reverse().join("");
+        if (inputValue === reversed) {
+            resultElement.textContent = `${inputValue} es un palíndromo.`;
+        } else {
+            resultElement.textContent = `${inputValue} no es un palíndromo.`;
+        }
+    }
+}
+function handleKeyDown(event) {
+    if (event.key === "Enter") {
+        isPalindrome();
+    }
+}
+   </script>
+ </body>
+ </html>
