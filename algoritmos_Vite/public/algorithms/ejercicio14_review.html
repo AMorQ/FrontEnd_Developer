@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 14: Anagramas</title>
+    <link rel="stylesheet" href="../style.css"> 
+</head>
+<body>
+    <h1>Ejercicio 14: Verificador de Anagramas</h1>
+    <p>Un anagrama es una palabra formada al reorganizar las letras de otra, como "amor" y "roma".</p>
+    
+    <div>
+        <label for="string1">Primera palabra:</label>
+        <input type="text" id="string1" size="30">
+    </div>
+    <div>
+        <label for="string2">Segunda palabra:</label>
+        <input type="text" id="string2" size="30">
+    </div>
+    
+    <button onclick="verificar()">Verificar si son Anagramas</button>
+    
+    <p id="resultado"></p>
+
+    <script>
+        /**
+         * Esta es la función principal que comprueba si dos cadenas son anagramas.
+         * @param {string} str1 - La primera cadena.
+         * @param {string} str2 - La segunda cadena.
+         * @returns {boolean} - Devuelve true si son anagramas, de lo contrario false.
+         */
+        function sonAnagramas(str1, str2) {
+            // 1. Limpiar y normalizar las cadenas:
+            //    - Convertir a minúsculas para ignorar mayúsculas/minúsculas.
+            //    - Reemplazar todo lo que NO sea una letra (a-z) o número (0-9) con una cadena vacía.
+            const cleanStr1 = str1.toLowerCase().replace(/[^a-z0-9]/g, '');
+            const cleanStr2 = str2.toLowerCase().replace(/[^a-z0-9]/g, '');
+
+            // 2. Si las longitudes de las cadenas limpias no son iguales, no pueden ser anagramas.
+            if (cleanStr1.length !== cleanStr2.length) {
+                return false;
+            }
+
+            // 3. Convertir las cadenas en arrays, ordenarlos y volver a unirlos.
+            //    Ejemplo: "roma" -> ['r','o','m','a'] -> ['a','m','o','r'] -> "amor"
+            const sortedStr1 = cleanStr1.split('').sort().join('');
+            const sortedStr2 = cleanStr2.split('').sort().join('');
+
+            // 4. Comparar las cadenas ordenadas. Si son idénticas, son anagramas.
+            return sortedStr1 === sortedStr2;
+        }
+
+        /**
+         * Esta función se activa con el botón. Obtiene los valores, llama a la lógica
+         * principal y muestra el resultado en la página.
+         */
+        function verificar() {
+            const str1 = document.getElementById('string1').value;
+            const str2 = document.getElementById('string2').value;
+            const resultadoElement = document.getElementById('resultado');
+
+            if (sonAnagramas(str1, str2)) {
+                resultadoElement.textContent = `"${str1}" y "${str2}" SÍ son anagramas.`;
+                resultadoElement.style.color = 'green';
+            } else {
+                resultadoElement.textContent = `"${str1}" y "${str2}" NO son anagramas.`;
+                resultadoElement.style.color = 'red';
+            }
+        }
+    </script>
+
+    <a href="/index.html" class="back-button" id="comeBack">Volver a la página principal</a>
+</body>
+</html>

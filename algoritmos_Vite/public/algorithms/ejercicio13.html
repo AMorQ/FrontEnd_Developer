@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sumar Array</title>
+  <link rel="stylesheet" href="../../src/assets/main.css">
+</head>
+<body>
+  <h1>Sumar Array</h1>
+
+  <label for="arrayInput">Ingrese un array de números (separados por comas):</label>
+  <input type="text" id="arrayInput" onkeydown="handleKeyDown(event)">
+  <button onclick="sumarArray()">Vamos allá</button>
+
+  <p id="result"></p>
+
+  <a href="/index.html" class="back-button" id="comeBack">Volver a la página principal</a>
+
+  <script>
+    function sumarArray() {
+
+        const arrayInput = document.getElementById("arrayInput");
+
+        const inputValue = arrayInput.value;
+
+        const resultElement = document.getElementById("result");
+
+    // Check if the input is empty
+    if (inputValue === "") {        
+        resultElement.textContent = "El campo no puede estar vacío";
+    } else {
+        // Split the input string into an array of numbers
+        const someArray = inputValue.split(",");
+        const numbersArray = someArray.map(Number);
+
+        const sum = numbersArray.reduce((accumulator, currentValue) => {
+            return accumulator + currentValue;
+        }, 0);
+
+        resultElement.textContent = "La suma del array es: " + sum;
+            return;
+        }
+    }
+
+
+function handleKeyDown(event) {
+    if (event.key === "Enter") {
+        sumarArray();
+    }
+}
+  </script>
+</body>
+</html>

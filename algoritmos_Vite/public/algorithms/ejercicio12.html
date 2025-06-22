@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Eliminar Duplicados</title>
+  <link rel="stylesheet" href="../../src/assets/main.css">
+</head>
+<body>
+  <h1>Eliminar Duplicados</h1>
+
+  <label for="arrayInput">Ingrese un array de números (separados por comas):</label>
+  <input type="text" id="arrayInput" onkeydown="handleKeyDown(event)">
+  <button onclick="eliminarDuplicados()">vamos allá</button>
+
+  <p id="result"></p>
+
+  <a href="/index.html" class="back-button" id="comeBack">Volver a la página principal</a>
+
+  <script>
+    function eliminarDuplicados() {
+
+        const arrayInput = document.getElementById("arrayInput");
+
+        const inputValue = arrayInput.value;
+
+        const resultElement = document.getElementById("result");
+
+    // Check if the input is empty
+    if (inputValue === "") {        
+        resultElement.textContent = "El campo no puede estar vacío";
+    } else {
+        // Split the input string into an array of numbers
+        const someArray = inputValue.split(",");
+        
+  
+        // Check if all elements are valid numbers
+  
+        if (!someArray || someArray.length < 1) {
+                resultElement.textContent = "El array no tiene suficientes elementos.";
+                return;
+        } else {
+            const uniqueArr = [...new Set(someArray)];
+            resultElement.textContent = "El array sin duplicados es: " + uniqueArr.join(", ");
+            return;
+        }
+    }
+}
+
+function handleKeyDown(event) {
+    if (event.key === "Enter") {
+        eliminarDuplicados();
+    }
+}
+  </script>
+</body>
+</html>

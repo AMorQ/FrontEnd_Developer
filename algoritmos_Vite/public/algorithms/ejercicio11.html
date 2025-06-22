@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Segundo Mayor</title>
+  <link rel="stylesheet" href="../../src/assets/main.css">
+</head>
+<body>
+  <h1>Encuentra el segundo número más grande del array</h1>
+
+  <label for="arrayInput">Ingrese un array de números (separados por comas):</label>
+  <input type="text" id="arrayInput" onkeydown="handleKeyDown(event)">
+  <button onclick="segundo()">¿Cuál será?</button>
+
+  <p id="result"></p>
+
+  <a href="/index.html" class="back-button" id="comeBack">Volver a la página principal</a>
+
+  <script>
+    function segundo() {
+
+        const arrayInput = document.getElementById("arrayInput");
+
+        const inputValue = arrayInput.value;
+
+        const resultElement = document.getElementById("result");
+
+    // Check if the input is empty
+    if (inputValue === "") {        
+        resultElement.textContent = "El campo no puede estar vacío";
+    } else {
+        // Split the input string into an array of numbers
+        const numArray = inputValue.split(",");
+        const numbersArray = numArray.map(Number)
+  
+
+        // Check if all elements are valid numbers
+        if (numbersArray.some(isNaN)) {
+            resultElement.textContent = "Por favor, ingrese solo números separados por comas.";
+        } else {
+            // edge cases    
+            if (!numbersArray || numbersArray.length < 2) {
+                    resultElement.textContent = "El array no tiene suficientes elementos.";
+                    return;
+                }
+            else {
+                const uniqueArr = [...new Set(numbersArray)];
+                if (uniqueArr.length < 2) {
+                    resultElement.textContent = "No hay un segundo valor más grande (todos los elementos son iguales).";
+                    return;
+                }
+                const sortedArr = uniqueArr.sort((a, b) => b - a);
+                resultElement.textContent = 'El segundo número más grande es ' + sortedArr[1];
+            }
+        }
+    }
+}
+
+function handleKeyDown(event) {
+    if (event.key === "Enter") {
+        segundo();
+    }
+}
+  </script>
+</body>
+</html>
