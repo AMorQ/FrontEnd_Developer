@@ -1,0 +1,95 @@
+<!-- 15 - Crear un programa que devuelva los números primos hasta el número (n). -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 15: Números Primos</title>
+    <link rel="stylesheet" href="../style.css"> 
+</head>
+<body>
+    <h1>Ejercicio 15: Encontrar Números Primos</h1>
+    <p>Ingrese un número (n) y encontraremos todos los números primos desde 2 hasta ese número.</p>
+    
+    <div>
+        <label for="numberInput">Ingrese el número n:</label>
+        <input type="number" id="numberInput" onkeydown="handleEnter(event)">
+    </div>
+    
+    <button onclick="mostrarResultado()">Encontrar Primos</button>
+    
+    <p id="resultado"></p>
+
+    <script>
+        /**
+         * Función auxiliar que comprueba si un número es primo.
+         * @param {number} num - El número a comprobar.
+         * @returns {boolean} - Devuelve true si el número es primo, de lo contrario false.
+         */
+        function esPrimo(num) {
+            // Los números primos deben ser mayores que 1.
+            if (num <= 1) {
+                return false;
+            }
+            // Comprobamos si el número es divisible por algún número desde 2 hasta su raíz cuadrada.
+            // Si lo es, no es primo. Esta es una optimización para no tener que comprobar hasta num.
+            for (let i = 2; i <= Math.sqrt(num); i++) {
+                if (num % i === 0) {
+                    return false;
+                }
+            }
+            // Si el bucle termina sin encontrar divisores, el número es primo.
+            return true;
+        }
+
+        /**
+         * Función principal que se activa con el botón.
+         */
+        function mostrarResultado() {
+            const inputElement = document.getElementById('numberInput');
+            const resultadoElement = document.getElementById('resultado');
+            
+            // Convertimos el valor del input a un número entero.
+            const n = parseInt(inputElement.value, 10);
+
+            // Validación: Asegurarse de que el input es un número válido y mayor que 1.
+            if (isNaN(n) || n < 2) {
+                resultadoElement.textContent = 'Por favor, ingrese un número entero mayor o igual a 2.';
+                resultadoElement.style.color = 'orange';
+                return;
+            }
+
+            const listaDePrimos = [];
+            // Recorremos todos los números desde 2 hasta n.
+            for (let i = 2; i <= n; i++) {
+                // Usamos nuestra función auxiliar para comprobar si el número actual es primo.
+                if (esPrimo(i)) {
+                    listaDePrimos.push(i); // Si es primo, lo añadimos a nuestra lista.
+                }
+            }
+
+            // Mostramos el resultado final en la página.
+            if (listaDePrimos.length > 0) {
+                resultadoElement.textContent = `Los números primos hasta ${n} son: ${listaDePrimos.join(', ')}`;
+                resultadoElement.style.color = 'green';
+            } else {
+                // Este caso es teóricamente imposible con la validación n >= 2, pero es bueno tenerlo.
+                resultadoElement.textContent = `No se encontraron números primos hasta ${n}.`;
+                resultadoElement.style.color = 'red';
+            }
+        }
+
+        /**
+         * Función que maneja el evento de presionar "Enter" en el campo de entrada.
+         */
+        function handleEnter(event) {
+            if (event.key === 'Enter') {
+                mostrarResultado();
+            }
+        }
+    </script>
+
+    <a href="/index.html" class="back-button" id="comeBack">Volver a la página principal</a>
+</body>
+</html>

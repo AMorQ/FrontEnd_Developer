@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 14: Anagramas</title>
+    <link rel="stylesheet" href="../../src/assets/main.css"> 
+
+    <style>
+        div {
+            margin-bottom: 2rem;
+        }
+
+    </style>
+</head>
+<body>
+    <h1>Ejercicio 14: Verificador de Anagramas</h1>
+    <p>Un anagrama es una palabra formada al reorganizar las letras de otra, como "amor" y "roma".</p>
+    
+    <div>
+        <label for="string1">Primera palabra:</label>
+        <input type="text" id="string1" size="30" onkeydown="handleEnter(event)">
+    </div>
+        <!-- le pongo un size determinado para que el programa no dure mucho tiempo -->
+ 
+    <div>
+        <label for="string2">Segunda palabra:</label>
+        <input type="text" id="string2" size="30" onkeydown="handleEnter(event)">
+    </div>
+
+    
+    <button onclick="verificar()">Verificar si son Anagramas</button>
+    
+    <p id="resultado"></p>
+
+    <script>
+        /**
+         * Esta es la función principal que comprueba si dos cadenas son anagramas.
+         * @param {string} str1 - La primera cadena.
+         * @param {string} str2 - La segunda cadena.
+         * @returns {boolean} - Devuelve true si son anagramas, de lo contrario false.
+         */
+        function sonAnagramas(str1, str2) {
+            // 1. Limpiar y normalizar las cadenas:
+            //    - Convertir a minúsculas = case-insensitive
+            //    - Reemplazar todo lo que NO sea una letra (a-z) o número (0-9) con una cadena vacía.
+            //  ATTENTION: edge case: if my strings have both the same number ok non alphanumerical
+            //  characters, this program will return true, even if they are not anagrams.
+            // 2. Si las longitudes de las cadenas limpias no son iguales, no pueden ser anagramas.
+
+            // Ive added the ñ for spanish alpahabet but, the alphabetical order is still not respected, thus the function won't work sorting the chains
+            const cleanStr1 = str1.toLowerCase().replace(/[^a-z0-9ñ]/g, '');
+            // Fully Spanish RegEx: /[^a-z0-9ñáéíóúü]/g
+            const cleanStr2 = str2.toLowerCase().replace(/[^a-z0-9ñ]/g, '');
+
+            /**
+             * Let's break down the replace method's arguments:
+
+The First Argument: /[^a-z0-9]/g (The Search Pattern)
+This is a Regular Expression (RegEx), which is a powerful way to define a search pattern.
+
+/ ... /: The forward slashes at the beginning and end signify that this is a regular expression pattern.
+[ ... ]: The square brackets define a character set. It means "match any single character found inside these brackets."
+^: When the caret ^ is the very first character inside the square brackets [], it acts as a negation. It means "match any character that is NOT in this set."
+a-z: This is a range representing all lowercase letters from 'a' to 'z'.
+0-9: This is a range representing all digits from '0' to '9'.
+So, [^a-z0-9] means: "Find any single character that is NOT a lowercase letter and NOT a digit." This includes spaces, commas, exclamation points, hyphens, etc.
+
+g: The g at the very end is a flag that stands for "global". It tells the replace method not to stop after finding the first match, but to continue searching and replace all matches throughout the entire string
+            */
+
+            if (cleanStr1.length !== cleanStr2.length) {
+                return false;
+            }
+
+            // 3. Convertir las cadenas en arrays, ordenarlos alfabéticamente y volver a unirlos.
+            // 4. Comparar las cadenas ordenadas. Si son idénticas, son anagramas.
+            const sortedStr1 = cleanStr1.split('').sort().join('');
+            const sortedStr2 = cleanStr2.split('').sort().join('');
+
+            // cómo ordena la cadena alfanumérica?
+            // console.log(`"${cleanStr1}" y "${cleanStr2}" se convierten en "${sortedStr1}" y "${sortedStr2}"`);
+
+            // first, it puts the numbers from 0 to 9 and then the letters a-z
+
+            // ATTENTION: no asimila la ñ como una letra del alfabeto, sino un carácter especial, y lo elimina
+
+
+            // Si las cadenas ordenadas son iguales, son anagramas.
+            return sortedStr1 === sortedStr2;
+            
+        }
+
+        /**
+        In here, I'm using a different logic: 
+        I interact with the DOM in a different function (verificar()) that calls
+        the sonAnagramas() function to check if the two input strings are anagrams.
+         */
+        function verificar() {
+            // function activated with the button
+            const str1 = document.getElementById('string1').value;
+            const str2 = document.getElementById('string2').value;
+            const resultadoElement = document.getElementById('resultado');
+
+            // GATEKEEPER
+            if (str1.trim() === '' || str2.trim() === '') {
+                // trim removes leading and trailing whitespace
+                resultadoElement.textContent = 'Por favor, ingrese texto en ambos campos.';
+                resultadoElement.style.color = 'orange'; 
+                return; // This stops the function from continuing.
+            }
+
+            if (sonAnagramas(str1, str2)) {
+                resultadoElement.textContent = `"${str1}" y "${str2}" SÍ son anagramas.`;
+                resultadoElement.style.color = 'green';
+            } else {
+                resultadoElement.textContent = `"${str1}" y "${str2}" NO son anagramas.`;
+                resultadoElement.style.color = 'red';
+            }
+        }
+
+        function handleEnter(event) {
+            if (event.key === "Enter") {
+                verificar();
+            }
+        }
+    </script>
+
+    <a href="/index.html" class="back-button" id="comeBack">Volver a la página principal</a>
+</body>
+</html>
