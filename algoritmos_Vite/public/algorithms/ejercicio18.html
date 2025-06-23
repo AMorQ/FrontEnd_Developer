@@ -1,0 +1,80 @@
+ <!--18 - Crear un programa que transforme una frase en "notación hacker" (leet speak).-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 18: Traductor Leet Speak</title>
+    <link rel="stylesheet" href="../../src/assets/main.css"> 
+</head>
+
+<body>
+    <h1>Ejercicio 18: Traductor Leet (Hacker) Speak</h1>
+    <p>Ingrese una frase y la traduciremos a notación "leet", reemplazando letras por números y símbolos.</p>
+    
+    <div>
+        <label for="stringInput">Frase a traducir:</label>
+        <input type="text" id="stringInput" size="50" onkeydown="handleEnter(event)">
+    </div>
+    
+    <button onclick="mostrarResultado()">Traducir a Leet</button>
+    
+    <p id="resultado"></p>
+
+    <script>
+
+        function traducirALeet(texto) {
+            // Un mapa con las sustituciones más comunes de Leet Speak.
+            const mapaLeet = {
+                'a': '4',
+                'b': '8',
+                'e': '3',
+                'g': '6',
+                'i': '1',
+                'l': '1',
+                'o': '0',
+                's': '5',
+                't': '7',
+                'z': '2'
+            };
+
+            const textoEnMinusculas = texto.toLowerCase();
+            let resultado = '';
+
+            for (let i = 0; i < textoEnMinusculas.length; i++) {
+                const char = textoEnMinusculas[i];
+
+            // Si el carácter está en nuestro diccionario, sustituimos, sino dejamos el char original   
+                resultado += mapaLeet[char] || char;
+            }
+
+            return resultado;
+        }
+
+        function mostrarResultado() {
+            const inputElement = document.getElementById('stringInput');
+            const resultadoElement = document.getElementById('resultado');
+            const textoOriginal = inputElement.value;
+
+            if (textoOriginal.trim() === '') {
+                resultadoElement.textContent = 'Por favor, ingrese algo de texto para traducir.';
+                resultadoElement.style.color = 'orange';
+                return;
+            }
+
+            const textoTraducido = traducirALeet(textoOriginal);
+
+            resultadoElement.textContent = `Traducción Leet: ${textoTraducido}`;
+        }
+
+        function handleEnter(event) {
+            if (event.key === 'Enter') {
+                mostrarResultado();
+            }
+        }
+    </script>
+
+    <a href="/index.html" class="back-button" id="comeBack">Volver a la página principal</a>
+</body>
+</html>
