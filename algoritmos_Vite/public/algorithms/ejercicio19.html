@@ -1,0 +1,59 @@
+ <!--19 - Dado un año como parámetro (número), devuelve el número del siglo al que pertenece.-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 19: Calcular Siglo</title>
+    <link rel="stylesheet" href="../../src/assets/main.css">  
+</head>
+
+<body>
+    <h1>Ejercicio 19: Calcular el Siglo de un Año</h1>
+    <p>Ingrese un año y veremos a qué siglo pertenece.</p>
+    
+    <div>
+        <label for="yearInput">Año:</label>
+        <input type="number" id="yearInput" placeholder="Ej: 1995" onkeydown="handleEnter(event)">
+    </div>
+    
+    <button onclick="mostrarResultado()">Calcular Siglo</button>
+    
+    <p id="resultado"></p>
+
+    <script>
+
+        function calcularSiglo(year) {
+            return Math.ceil(year / 100);
+        }
+
+        function mostrarResultado() {
+            const inputElement = document.getElementById('yearInput');
+            const resultadoElement = document.getElementById('resultado');
+            
+            const year = parseInt(inputElement.value, 10);
+            // 10 stands for using the decimal number system
+
+            // Validación: Asegurarse de que el input es un número válido y positivo.
+            if (isNaN(year) || year <= 0) {
+                resultadoElement.textContent = 'Por favor, ingrese un año válido (número positivo).';
+                resultadoElement.style.color = 'orange';
+                return;
+            }
+
+            const siglo = calcularSiglo(year);
+
+            resultadoElement.textContent = `El año ${year} pertenece al siglo ${siglo}.`;
+        }
+
+        function handleEnter(event) {
+            if (event.key === 'Enter') {
+                mostrarResultado();
+            }
+        }
+    </script>
+
+    <a href="/index.html" class="back-button" id="comeBack">Volver a la página principal</a>
+</body>
+</html>

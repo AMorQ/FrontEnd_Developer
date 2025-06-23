@@ -1,0 +1,137 @@
+ <!--Un reloj muestra: 
+ -> la hora (0 <= h <= 23) 
+ -> los minutos (0 <= m <= 59)
+ -> y los segundos (0 <= s <= 59).
+ Escribe una funcion que calcule los milisegundos que han pasado desde media noche 00:00:00 hasta la hora actual
+– Podemos obtener la hora, minutos y segundos con la función
+ "getTime"-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 20: Milisegundos desde Medianoche</title>
+    <link rel="stylesheet" href="../../src/assets/main.css">  
+</head>
+
+<body>
+    <h1>Ejercicio 20: Milisegundos desde Medianoche</h1>
+    <p>Calcular cuántos milisegundos han pasado desde las 00:00:00 hasta la hora actual</p>
+    
+    <!-- voy a hacerlo con la hora actual, no dada por el usuario -->
+    <!-- <div>
+        <label for="hours">Horas:</label>
+        <input type="number" id="hours" min="0" max="23" placeholder="h [0-23]" onkeydown="handleEnter(event)">
+        
+        <label for="minutes">Minutos:</label>
+        <input type="number" id="minutes" min="0" max="59" placeholder="m [0-59]" onkeydown="handleEnter(event)">
+        
+        <label for="seconds">Segundos:</label>
+        <input type="number" id="seconds" min="0" max="59" placeholder="s [0-59]" onkeydown="handleEnter(event)">
+    </div> -->
+    
+    <button onclick="mostrarResultado()">Calcular Milisegundos</button>
+    
+    <p id="resultado"></p>
+
+    <script>
+
+        function calcularMilisegundos() {
+
+            const now = new Date();
+           
+            // inicializamos en la hora actual y reseteamos a midnight
+            const midnight = new Date();
+            midnight.setHours(0, 0, 0, 0);
+            // it seems these two operations cannot be in the same line
+
+            // usamos getTime para obtener el timestamp(milisegundos desde 1970)
+            return {milisegundos: now.getTime() - midnight.getTime(), now};
+
+            // const totalSegundos = (h * 3600) + (m * 60) + s;
+            
+            // const totalMilisegundos = totalSegundos * 1000;
+        
+            // return totalMilisegundos;
+        }
+
+        function mostrarResultado() {
+            // const h = parseInt(document.getElementById('hours').value, 10);
+            // const m = parseInt(document.getElementById('minutes').value, 10);
+            // const s = parseInt(document.getElementById('seconds').value, 10);
+            const resultadoElement = document.getElementById('resultado');
+
+            // Validación: Asegurarse de que los inputs son números válidos y están en el rango correcto.
+            // if (isNaN(h) || isNaN(m) || isNaN(s) || h < 0 || h > 23 || m < 0 || m > 59 || s < 0 || s > 59) {
+            //     resultadoElement.textContent = 'Por favor, ingrese valores válidos: h(0-23), m(0-59), s(0-59).';
+            //     resultadoElement.style.color = 'orange';
+            //     return;
+            // }
+
+            // const milisegundos = calcularMilisegundos(h, m, s);
+
+            const {milisegundos, now} = calcularMilisegundos();
+            const h = now.getHours();
+            const m = now.getMinutes();
+            const s = now.getSeconds();
+
+            // Usamos toLocaleString() para formatear el número grande con comas, haciéndolo más legible.
+            resultadoElement.textContent = `Desde las 00:00:00 hasta las ${h}:${m}:${s} (hora actual) han pasado ${milisegundos.toLocaleString()} milisegundos.`;
+
+            // resultadoElement.textContent = `Desde las 00:00:00 hasta la hora actual han pasado ${milisegundos.toLocaleString()} milisegundos.`;
+        }
+
+
+        function handleEnter(event) {
+            if (event.key === 'Enter') {
+                mostrarResultado();
+            }
+        }
+    </script>
+
+    <a href="/index.html" class="back-button" id="comeBack">Volver a la página principal</a>
+</body>
+</html>
+
+<!-- function getMilisegundosDesdeMedianoche() {
+    const ahora = new Date();
+    const horas = ahora.getHours();
+    const minutos = ahora.getMinutes();
+    const segundos = ahora.getSeconds();
+
+    // Convertimos todo a milisegundos
+    const milisegundos = (horas * 3600 + minutos * 60 + segundos) * 1000;
+    return milisegundos;
+}
+document.addEventListener("DOMContentLoaded", () => {
+    const ejercicioName = document.getElementById("exercise-name");
+    ejercicioName.textContent = "Ejercicio 20: Milisegundos desde medianoche";
+
+    const resultElement = document.getElementById("app");
+    const milisegundos = getMilisegundosDesdeMedianoche();
+    resultElement.textContent = `Han pasado ${milisegundos} milisegundos desde medianoche.`;
+});
+
+<!DOCTYPE html>
+<html lang="en">    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 20: Milisegundos desde medianoche</title>
+    <link rel="stylesheet" href="../../src/assets/main.css">
+</head>
+<body>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Bienvenido al Ejercicio 20</h1>
+            <p>Calcula los milisegundos que han pasado desde medianoche.</p>
+        </div>
+    </section>
+
+
+    <a href="/index.html" class="back-button" id="comeBack">Volver a la página principal</a>
+</body>
+</html>
+ -->
