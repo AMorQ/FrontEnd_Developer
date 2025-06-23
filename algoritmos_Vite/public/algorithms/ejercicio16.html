@@ -1,0 +1,104 @@
+ <!--16 - Escribir una función que convierta un número romano anúmero arábigo.  -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 16: Romanos a Arábigos</title>
+    <link rel="stylesheet" href="../../src/assets/main.css"> 
+</head>
+<body>
+    <h1>Ejercicio 16: Convertir de Romano a Arábigo</h1>
+    <p>Ingrese un número romano (ej: XIV, MCMXCIX) para convertirlo a su valor arábigo.</p>
+    
+    <div>
+        <label for="romanInput">Número Romano:</label>
+        <input type="text" id="romanInput" onkeydown="handleEnter(event)">
+    </div>
+    
+    <button onclick="mostrarResultado()">Convertir</button>
+    
+    <p id="resultado"></p>
+
+    <script>
+        /**
+         * @returns {number|null} - El número arábigo o null si la entrada es inválida.
+         */
+        function romanoAArabigo(romano) {
+            const valoresRomanos = {
+                'I': 1,
+                'V': 5,
+                'X': 10,
+                'L': 50,
+                'C': 100,
+                'D': 500,
+                'M': 1000
+            };
+            // this is a javascript object. its a dictionary based on pairs keys-values
+
+            const str = romano.toUpperCase();
+            let resultado = 0;
+            // REMEMBER: the let keyword is used to declare a variable that can be changed later
+
+            for (let i = 0; i < str.length; i++) {
+                const valorActual = valoresRomanos[str[i]];
+                // buscamos en el diccionario ValoresRomanos por su key
+                const valorSiguiente = valoresRomanos[str[i + 1]];
+
+                // Si el caracter no es un número romano válido, la entrada es inválida.
+                if (valorActual === undefined) {
+                    return null; // Indica entrada inválida
+                }
+
+                // Si el valor actual es menor que el siguiente, es un caso de sustracción (ej: IV, IX).
+                if (valorSiguiente && valorActual < valorSiguiente) {
+                    resultado -= valorActual;
+                } else {
+                    // De lo contrario, es un caso de adición.
+                    resultado += valorActual;
+                }
+            }
+            return resultado;
+        }
+
+        /**
+         * Función principal que se activa con el botón.
+         */
+        function mostrarResultado() {
+            const inputElement = document.getElementById('romanInput');
+            const resultadoElement = document.getElementById('resultado');
+            const romano = inputElement.value;
+
+            // Validación: Asegurarse de que el input no esté vacío.
+            if (romano.trim() === '') {
+                resultadoElement.textContent = 'Por favor, ingrese un número romano.';
+                resultadoElement.style.color = 'orange';
+                return;
+            }
+
+            const resultado = romanoAArabigo(romano);
+
+            // Comprobamos si el resultado es nulo (lo que indica una entrada inválida).
+            if (resultado === null) {
+                resultadoElement.textContent = `"${romano}" no es un número romano válido.`;
+                resultadoElement.style.color = 'red';
+            } else {
+                resultadoElement.textContent = `El número romano "${romano.toUpperCase()}" es ${resultado} en arábigo.`;
+                resultadoElement.style.color = 'green';
+            }
+        }
+
+        /**
+         * Función que maneja el evento de presionar "Enter" en el campo de entrada.
+         */
+        function handleEnter(event) {
+            if (event.key === 'Enter') {
+                mostrarResultado();
+            }
+        }
+    </script>
+
+    <a href="/index.html" class="back-button" id="comeBack">Volver a la página principal</a>
+</body>
+</html>
