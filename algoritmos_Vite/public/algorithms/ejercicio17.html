@@ -1,0 +1,103 @@
+ <!--17 - Crear un algoritmo que valide si un string tiene paréntesis balanceados.   -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 17: Paréntesis Balanceados</title>
+    <link rel="stylesheet" href="../../src/assets/main.css"> 
+    <style>
+        div {
+            margin-bottom: 2em;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Ejercicio 17: Verificador de Paréntesis Balanceados</h1>
+    <p>Ingrese una cadena para verificar si sus paréntesis (), corchetes [] y llaves {} están correctamente balanceados.</p>
+    
+    <div>
+        <label for="stringInput">Cadena de texto:</label>
+        <input type="text" id="stringInput" size="40" onkeydown="handleEnter(event)">
+    </div>
+    
+    <button onclick="mostrarResultado()">Verificar Balance</button>
+    
+    <p id="resultado"></p>
+
+    <script>
+        /**
+         * Comprueba si una cadena tiene paréntesis, corchetes y llaves balanceados.
+         * @param {string} str - La cadena a comprobar.
+         * @returns {boolean} - Devuelve true si está balanceado, de lo contrario false.
+         */
+        function estaBalanceado(str) {
+            // Usamos un array como si fuera una pila (stack).
+            const stack = [];
+            
+            // Un mapa para encontrar fácilmente el par de apertura de un carácter de cierre.
+            const mapaDePares = {
+                ')': '(',
+                ']': '[',
+                '}': '{'
+            };
+
+            for (let i = 0; i < str.length; i++) {
+                const char = str[i];
+
+                // Si es un carácter de apertura, lo añadimos a la pila.
+                if (char === '(' || char === '[' || char === '{') {
+                    stack.push(char);
+                } 
+                // Si es un carácter de cierre...
+                else if (char === ')' || char === ']' || char === '}') {
+                    // Si la pila está vacía, no hay un par de apertura, por lo que no está balanceado.
+                    if (stack.length === 0) {
+                        return false;
+                    }
+                    
+                    // Sacamos el último elemento de la pila (el último de apertura).
+                    const ultimoAbierto = stack.pop();
+                    
+                    // Comprobamos si el carácter de cierre actual corresponde al último de apertura.
+                    if (mapaDePares[char] !== ultimoAbierto) {
+                        return false;
+                    }
+                }
+            }
+
+            // Al final, si la pila está vacía, todos los caracteres de apertura tuvieron su par.
+            // Si no está vacía, quedaron caracteres de apertura sin cerrar.
+            return stack.length === 0;
+        }
+
+   
+        function mostrarResultado() {
+
+            const inputElement = document.getElementById('stringInput');
+            const resultadoElement = document.getElementById('resultado');
+            const str = inputElement.value;
+
+            // Una cadena vacía se considera balanceada, por lo que no se necesita validación de vacío.
+
+            if (estaBalanceado(str)) {
+                resultadoElement.textContent = `La cadena "${str}" SÍ está balanceada.`;
+                resultadoElement.style.color = 'green';
+            } else {
+                resultadoElement.textContent = `La cadena "${str}" NO está balanceada.`;
+                resultadoElement.style.color = 'red';
+            }
+        }
+
+        function handleEnter(event) {
+            if (event.key === 'Enter') {
+                mostrarResultado();
+            }
+        }
+    </script>
+
+    <a href="/index.html" class="back-button" id="comeBack">Volver a la página principal</a>
+</body>
+</html>
